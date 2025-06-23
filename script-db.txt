@@ -1,0 +1,14 @@
+/*23/06/2025 - Criação do banco de dados */ 
+
+create database rootdesk_db;
+
+use rootdesk_db;
+
+create table usuarios (
+	id int AUTO_INCREMENT PRIMARY KEY,
+	nome varchar(100) NOT NULL,
+	login varchar(100) NOT NULL UNIQUE,
+	senha varchar (6) NOT NULL
+);
+
+/*----------------------------------------*/

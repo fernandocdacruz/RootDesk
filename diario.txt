@@ -1,0 +1,7 @@
+Sistema para gerenciamento de dados rurais.
+ChatGPT: projeto RootDesk.
+
+23/06/2025 - criar conexão jdbc, criar banco de dados, fazer uma tela de login/senha
+--> https://celke.com.br/artigo/tabela-de-cores-html-nome-hexadecimal-rgb - página cores
+
+24/06/2025 - terminar o cadastro de usuários
