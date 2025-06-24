@@ -5,3 +5,5 @@ ChatGPT: projeto RootDesk.
 --> https://celke.com.br/artigo/tabela-de-cores-html-nome-hexadecimal-rgb - página cores
 
 24/06/2025 - terminar o cadastro de usuários
+--> cadastrar usuário terminado, tenho que finalizar o css
+--> arrumar o erro ao tentar fazer o cadastro e utilizar um login que já existe
