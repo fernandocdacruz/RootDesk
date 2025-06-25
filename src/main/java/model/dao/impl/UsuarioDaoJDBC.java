@@ -2,6 +2,7 @@ package model.dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import db.DB;
@@ -37,6 +38,34 @@ public class UsuarioDaoJDBC implements UsuarioDao {
 			DB.closeStatement(st);
 		}
 		
+	}
+
+	@Override
+	public Usuario acharPeloLogin(String login) {
+		PreparedStatement st = null;
+		ResultSet rs = null;
+		try {
+			st = conn.prepareStatement(
+					"SELECT * FROM USUARIOS "
+					+ "WHERE login = ?"
+					);
+			st.setString(1, login);
+			rs = st.executeQuery();
+			if (rs.next()) {
+				Usuario usuario = new Usuario();
+				usuario.setId(rs.getInt("id"));
+				usuario.setNome(rs.getString("nome"));
+				usuario.setLogin(rs.getString("login"));
+				usuario.setSenha(rs.getString("senha"));
+				return usuario;
+			}
+			return null;
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+			DB.closeResultSet(rs);
+		}
 	}
 
 }

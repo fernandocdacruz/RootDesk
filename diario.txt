@@ -7,3 +7,5 @@ ChatGPT: projeto RootDesk.
 24/06/2025 - terminar o cadastro de usuários
 --> cadastrar usuário terminado, tenho que finalizar o css
 --> arrumar o erro ao tentar fazer o cadastro e utilizar um login que já existe
+--> fazer o processo de login
+--> Pensar como generalizar a página de erro para direcionar para a página que eu quero
