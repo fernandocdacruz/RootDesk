@@ -9,3 +9,7 @@ ChatGPT: projeto RootDesk.
 --> arrumar o erro ao tentar fazer o cadastro e utilizar um login que já existe
 --> fazer o processo de login
 --> Pensar como generalizar a página de erro para direcionar para a página que eu quero
+
+26/06/2025
+--> Deletar usuario pronto
+--> Resolver problema do mysql, fazendo o update consigo colocar o acento

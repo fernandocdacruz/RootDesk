@@ -11,7 +11,7 @@ public class DB {
 	private static Connection conn = null;
 	
 	private static String driver = "com.mysql.cj.jdbc.Driver";	
-    private static String url = "jdbc:mysql://localhost:3306/rootdesk_db?useSSL=false&serverTimezone=America/Sao_Paulo";
+	private static String url = "jdbc:mysql://localhost:3306/rootdesk_db?useSSL=false&serverTimezone=America/Sao_Paulo&characterEncoding=UTF-8";
     private static String user = "root";
     private static String password = "1234567";
     

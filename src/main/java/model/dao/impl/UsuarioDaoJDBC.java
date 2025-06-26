@@ -68,4 +68,21 @@ public class UsuarioDaoJDBC implements UsuarioDao {
 		}
 	}
 
+	@Override
+	public void deletarUsuario(int id) {
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement(
+					"DELETE FROM usuarios WHERE id = ?"
+					);
+			st.setInt(1, id);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+		}
+		
+	}
+
 }

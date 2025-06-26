@@ -31,6 +31,8 @@ public class UsuarioServlet extends HttpServlet {
 	   break;
 	   case "entrarPerfil": entrarPerfil(request, response);
 	   break;
+	   case "deletarUsuario": deletarUsuario(request, response);
+	   break;
 	   }
    }
    
@@ -54,13 +56,20 @@ public class UsuarioServlet extends HttpServlet {
    
    private void entrarPerfil(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	   
+	   request.setCharacterEncoding("UTF-8");
+	   response.setContentType("text/html;charset=UTF-8");
+	   
 	   String login = request.getParameter("login");
 	   String senha = request.getParameter("senha");
 	   
 	   if (!validarLoginEmUso(login)) {
 		   Usuario usuario = usuarioDao.acharPeloLogin(login);
 		   if (usuario.getSenha().equals(senha)) {
-			   response.sendRedirect(request.getContextPath() + "/view/perfilUsuario.html");
+			   request.setAttribute("nome", usuario.getNome());
+			   request.setAttribute("id", usuario.getId());
+			   RequestDispatcher dispatcher = request.getRequestDispatcher("/view/perfilUsuario.jsp");
+			   dispatcher.forward(request, response);
+			   return;
 		   } else {
 			   request.setAttribute("erro", "Senha inválida. Tente novamente.");
 			   request.setAttribute("voltarPara", "/index.html");
@@ -76,6 +85,13 @@ public class UsuarioServlet extends HttpServlet {
 		   return;
 	   }
 	   
+   }
+   
+   private void deletarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	   String id = request.getParameter("idUsuario");
+	   int intId = Integer.parseInt(id);
+	   usuarioDao.deletarUsuario(intId);
+	   response.sendRedirect(request.getContextPath() + "/index.html");
    }
    
    private boolean validarLoginEmUso(String login) {
