@@ -17,10 +17,15 @@
 			<div>
 				<a href="#">Calculadora de Fertilizantes</a>
 				<button type="submit" name="acao" value="deletarUsuario">Deletar Conta</button>
-				<a href="<%= request.getContextPath() %>/index.html">Voltar</a>	
+				<div>
+					<form action="<%= request.getContextPath() %>/Usuario" method="post">
+						<input type="hidden" name="idUsuario" value="${id}">
+						<button type="submit" name="acao" value="obterIdUsuario">Alterar Login</button>
+					</form>
+				</div>
+				<a href="<%= request.getContextPath() %>/index.html">Sair</a>
 			</div>	
-		</form>
-			
+		</form>	
 	</div>
 </body>
 </html>

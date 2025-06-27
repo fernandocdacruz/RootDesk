@@ -85,4 +85,21 @@ public class UsuarioDaoJDBC implements UsuarioDao {
 		
 	}
 
+	@Override
+	public void atualizarUsuario(int id, String novoLogin) {
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement(
+					"UPDATE usuarios SET login = ? WHERE id = ?"
+					);
+			st.setString(1, novoLogin);
+			st.setInt(2, id);
+			st.executeUpdate();
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		} finally {
+			DB.closeStatement(st);
+		}
+	}
+
 }

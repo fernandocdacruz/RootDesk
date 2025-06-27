@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import model.dao.DaoFactory;
 import model.dao.UsuarioDao;
@@ -33,10 +34,16 @@ public class UsuarioServlet extends HttpServlet {
 	   break;
 	   case "deletarUsuario": deletarUsuario(request, response);
 	   break;
+	   case "obterIdUsuario": obterIdUsuario(request, response);
+	   break;
+	   case "atualizarUsuario": atualizarUsuario(request, response);
+	   break;
 	   }
    }
    
    private void cadastrarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	   
+	   request.setCharacterEncoding("UTF-8");
 	   
 	   String nome = request.getParameter("nome");
 	   String login = request.getParameter("login");
@@ -65,8 +72,9 @@ public class UsuarioServlet extends HttpServlet {
 	   if (!validarLoginEmUso(login)) {
 		   Usuario usuario = usuarioDao.acharPeloLogin(login);
 		   if (usuario.getSenha().equals(senha)) {
-			   request.setAttribute("nome", usuario.getNome());
-			   request.setAttribute("id", usuario.getId());
+			   HttpSession session = request.getSession();
+			   session.setAttribute("nome", usuario.getNome());
+			   session.setAttribute("id", usuario.getId());
 			   RequestDispatcher dispatcher = request.getRequestDispatcher("/view/perfilUsuario.jsp");
 			   dispatcher.forward(request, response);
 			   return;
@@ -92,6 +100,26 @@ public class UsuarioServlet extends HttpServlet {
 	   int intId = Integer.parseInt(id);
 	   usuarioDao.deletarUsuario(intId);
 	   response.sendRedirect(request.getContextPath() + "/index.html");
+	   return;
+   }
+   
+   private void obterIdUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	   String idUsuario = request.getParameter("idUsuario");
+	   request.setAttribute("id", idUsuario);
+	   RequestDispatcher dispatcher = request.getRequestDispatcher("/view/alterarLogin.jsp");
+	   dispatcher.forward(request, response);
+	   return;
+	   
+   }
+   
+   private void atualizarUsuario(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	   
+	   String id = request.getParameter("idUsuario");
+	   int intId = Integer.parseInt(id);
+	   String novoLogin = request.getParameter("novoLogin");
+	   usuarioDao.atualizarUsuario(intId, novoLogin);
+	   response.sendRedirect(request.getContextPath() + "/view/perfilUsuario.jsp");
+	   return;
    }
    
    private boolean validarLoginEmUso(String login) {

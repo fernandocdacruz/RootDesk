@@ -13,3 +13,7 @@ ChatGPT: projeto RootDesk.
 26/06/2025
 --> Deletar usuario pronto
 --> Resolver problema do mysql, fazendo o update consigo colocar o acento
+
+27/06/2025
+--> Fazer o update do login
+--> terminar o css da tela do perfil
