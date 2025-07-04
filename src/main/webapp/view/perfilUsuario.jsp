@@ -4,28 +4,32 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Bem vindo ao RootDesk!!</title>
+<title>Perfil do Usuário</title>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/view/perfilUsuarioStyle.css">
 </head>
 <body>
 	<div id="container">
-		<img alt="foto-perfil"  src="<%= request.getContextPath() %>/imgs/foto-perfil.jpg">
-		<p class="mensagem-bemvindo">Bem vindo ${nome} !!</p>
-		<form action="<%= request.getContextPath() %>/Usuario" method="post">
-			<input type="hidden" name="idUsuario" value="${id}">
-			<div>
-				<a href="#">Calculadora de Fertilizantes</a>
-				<button type="submit" name="acao" value="deletarUsuario">Deletar Conta</button>
-				<div>
+		<h1>Bem-vindo, ${nome}!</h1>
+		<img alt="foto-perfil" src="<%= request.getContextPath() %>/imgs/foto-perfil.jpg">
+		
+		<nav class="menu">
+			<ul>
+				<li><a href="#">Calculadora de Fertilizantes</a></li>
+				<li>
 					<form action="<%= request.getContextPath() %>/Usuario" method="post">
 						<input type="hidden" name="idUsuario" value="${id}">
-						<button type="submit" name="acao" value="obterIdUsuario">Alterar Login</button>
+						<button type="submit" name="acao" value="obterIdUsuario" class="btn-menu">Alterar Login</button>
 					</form>
-				</div>
-				<a href="<%= request.getContextPath() %>/index.html">Sair</a>
-			</div>	
-		</form>	
+				</li>
+				<li>
+					<form action="<%= request.getContextPath() %>/Usuario" method="post">
+						<input type="hidden" name="idUsuario" value="${id}">
+						<button type="submit" name="acao" value="deletarUsuario" class="btn-menu">Deletar Conta</button>
+					</form>
+				</li>
+				<li><a class="btn-menu sair" href="<%= request.getContextPath() %>/index.html">Sair</a></li>
+			</ul>
+		</nav>
 	</div>
 </body>
 </html>
